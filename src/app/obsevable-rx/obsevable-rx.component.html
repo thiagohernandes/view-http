@@ -1,0 +1,35 @@
+<div style="text-align:center">
+    <button (click)="pesquisar(2)"> HTTP observable request</button>
+    <br/>
+    <span *ngIf="lista != null && lista != undefined">
+      {{lista.userId}}<br/>
+      {{lista.id}}<br/>
+      {{lista.title}}<br/>
+      {{lista.body}}
+    </span>
+    <span *ngIf="msgError != null && msgError != undefined">
+        Erro original -> <strong>{{msgError}}}</strong>
+    </span>
+    <br/>
+    <button (click)="pesquisarService(4)"> HTTP observable request from service</button>
+    <br/>
+    <br/>
+  <table *ngIf="lista2 !== undefined && lista2 !== null" class="table">
+    <thead>
+      <tr>
+        <th>userId</th>
+        <th>id</th>
+        <th>title</th>
+        <th>body</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of lista2">
+        <td>{{item.userId}}</td>
+        <td>{{item.id}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.body}}</td>
+     </tr>
+    </tbody>
+  </table>
+</div>

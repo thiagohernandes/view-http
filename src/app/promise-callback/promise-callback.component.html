@@ -1,0 +1,22 @@
+<div style="text-align:center">
+    <button (click)="pesquisar(2)"> HTTP promise request</button>
+    <br/>
+    <span *ngIf="lista != null && lista != undefined">
+      {{lista.userId}}<br/>
+      {{lista.id}}<br/>
+      {{lista.title}}<br/>
+      {{lista.body}}
+    </span>
+    <span *ngIf="msgError != null && msgError != undefined">
+        Erro original -> <strong>{{msgError}}}</strong>
+    </span>
+    <br/>
+    <button (click)="pesquisarService(4)"> HTTP promise request from service</button>
+    <br/>
+    <span *ngIf="lista2 != null && lista2 != undefined">
+      {{lista2.userId}}<br/>
+      {{lista2.id}}<br/>
+      {{lista2.title}}<br/>
+      {{lista2.body}}
+    </span>
+</div>
