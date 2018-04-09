@@ -14,6 +14,9 @@ import { ObsevableRxComponent } from './obsevable-rx/obsevable-rx.component';
 
 import { HttpPromiseService } from './services/http-promise.service';
 import { HttpObservableService } from './services/http-observable.service';
+import { JwtTokenComponent } from './jwt-token/jwt-token.component';
+
+import { MyHttpInterceptor } from './interceptors/token-bearer';
 
 const appRoutes: Routes = [
   {
@@ -31,6 +34,10 @@ const appRoutes: Routes = [
   { 
     path: '',redirectTo: '/app-simple-http',pathMatch: 'full'
   },
+  {
+    path: 'app-jwt-token',
+    component: JwtTokenComponent
+  },
   { 
     path: '**', component: PageNotFoundComponent 
   }  
@@ -42,7 +49,8 @@ const appRoutes: Routes = [
     SimpleHttpComponent,
     PageNotFoundComponent,
     PromiseCallbackComponent,
-    ObsevableRxComponent
+    ObsevableRxComponent,
+    JwtTokenComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +63,12 @@ const appRoutes: Routes = [
   ],
   providers: [
     HttpPromiseService,
-    HttpObservableService
+    HttpObservableService,
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: MyHttpInterceptor, 
+      multi: true 
+    }
   ],
   bootstrap: [AppComponent]
 })
