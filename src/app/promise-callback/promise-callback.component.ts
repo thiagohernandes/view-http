@@ -10,22 +10,22 @@ import { HttpPromiseService } from '../services/http-promise.service';
 export class PromiseCallbackComponent implements OnInit {
 
   private apiRoot = 'http://jsonplaceholder.typicode.com/posts/';
-  public lista:Object = null;
-  public lista2:Object = null;
-  public msgError:any = null;
+  public lista: Object = null;
+  public lista2: Object = null;
+  public msgError: any = null;
 
-  constructor(private http: Http, private httpPromiseService:HttpPromiseService) { }
+  constructor(private http: Http, private httpPromiseService: HttpPromiseService) { }
 
   ngOnInit() {
   }
 
   pesquisar(id) {
-    let promise = new Promise((resolve, reject) => {
-      let apiURL = this.apiRoot+id;
+    const promise = new Promise((resolve, reject) => {
+      const apiURL = this.apiRoot + id;
       this.http.get(apiURL)
         .toPromise()
         .then(
-          res => { // Success 
+          res => { // Success
           this.lista = res.json();
           console.log(this.lista);
           console.log(res.status);
@@ -33,7 +33,7 @@ export class PromiseCallbackComponent implements OnInit {
           },
           msg => { // Error
           console.log(msg.status);
-          this.msgError = msg;  
+          this.msgError = msg;
           reject(msg);
           }
         );
@@ -41,9 +41,11 @@ export class PromiseCallbackComponent implements OnInit {
     return promise;
   }
 
-  pesquisarService(id){
+  pesquisarService(id) {
     this.httpPromiseService.pesquisarServico(id)
-                           .then(result => {console.log(result);this.lista2 = result})
+                           .then(result => {console.log(result);
+                                            this.lista2 = result;
+                            })
                            .catch(error => console.log(error));
   }
 

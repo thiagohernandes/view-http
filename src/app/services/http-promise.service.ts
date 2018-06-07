@@ -8,14 +8,14 @@ export class HttpPromiseService {
 
   constructor(private http: Http) { }
 
-  pesquisarServico(id):Promise<any> {
-    let promise = new Promise((resolve, reject) => {
-      let apiURL = this.apiRoot+id;
+  pesquisarServico(id): Promise<any> {
+    const promise = new Promise((resolve, reject) => {
+    const apiURL = this.apiRoot + id;
       console.log(apiURL);
      return this.http.get(apiURL)
         .toPromise()
         .then(
-          res => { // Success 
+          res => { // Success
           console.log(res.json());
           resolve(res.json());
           },
@@ -24,7 +24,7 @@ export class HttpPromiseService {
           reject(msg);
           }
         );
-    }); 
+    });
     return promise;
   }
 

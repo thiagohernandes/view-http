@@ -1,8 +1,11 @@
+
+import {throwError as observableThrowError, Observable} from 'rxjs';
+
+import {catchError} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+
+
+
 import { Item } from '../model/item';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 
@@ -13,13 +16,13 @@ export class HttpObservableService {
 
   constructor(private http: HttpClient) { }
 
-  consultaOrdemServico():Observable<Item[]>{
-    return this.http.get<Item[]>(this.apiRoot)
-                    .catch(this._errorHandler);
+  consultaOrdemServico(): Observable<Item[]> {
+    return this.http.get<Item[]>(this.apiRoot).pipe(
+                    catchError(this._errorHandler));
   }
 
-  _errorHandler(error:HttpErrorResponse){
-    return Observable.throw(error.message || "Server Error");
+  _errorHandler(error: HttpErrorResponse) {
+    return observableThrowError(error.message || 'Server Error');
   }
 
 }

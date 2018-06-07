@@ -11,14 +11,10 @@ export class SimpleHttpComponent implements OnInit {
   data: Object;
   loading: boolean;
   lista: Item[];
-  
-  constructor(private http: Http) { 
-  }
-  
+  constructor(private http: Http) { }
   ngOnInit() {
-    
   }
-  
+
   makeRequest(): void {
    this.loading = true;
    this.http.request('http://jsonplaceholder.typicode.com/posts/1')
@@ -28,6 +24,7 @@ export class SimpleHttpComponent implements OnInit {
             this.loading = false;
             });
   }
+
   makeRequestLista(): void {
     this.loading = true;
     this.http.request('http://jsonplaceholder.typicode.com/posts')
